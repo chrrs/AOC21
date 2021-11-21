@@ -10,7 +10,7 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
-class Solution(val year: Int, val day: Int, input: String? = null) {
+class Solution(private val year: Int, private val day: Int, input: String? = null) {
     private val cookie = dotenv()["COOKIE"]
     private val httpClient = HttpClient.newHttpClient()
 
@@ -48,11 +48,11 @@ class Solution(val year: Int, val day: Int, input: String? = null) {
         dayCache
     }
 
-    fun part1(answer: Solution.() -> Int?) = apply {
+    fun part1(answer: Solution.() -> Any?) = apply {
         println("${blue("Part 1:")} ${run(answer)}")
     }
 
-    fun part2(answer: Solution.() -> Int?) = apply {
+    fun part2(answer: Solution.() -> Any?) = apply {
         println("${blue("Part 2:")} ${run(answer)}")
     }
 }
