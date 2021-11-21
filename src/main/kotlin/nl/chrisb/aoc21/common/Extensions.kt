@@ -1,20 +1,21 @@
 package nl.chrisb.aoc21.common
 
-fun List<Any?>.rollingAt(i: Int): Any? = this[i % size]
-fun Array<Any?>.rollingAt(i: Int): Any? = this[i % size]
-fun String.rollingAt(i: Int): Char = this[i % length]
+fun List<*>.rollingAt(i: Int) = this[i % size]
+fun Array<*>.rollingAt(i: Int) = this[i % size]
+fun String.rollingAt(i: Int) = this[i % length]
 
-fun String.occurrences(c: Char): Int = count { it == c }
-fun String.binary(): Int = Integer.parseInt(this, 2)
-fun String.replacingRegex(rules: Map<String, String>): String {
+fun String.occurrences(c: Char) = count { it == c }
+fun String.binary() = Integer.parseInt(this, 2)
+fun String.groups(regex: Regex) = regex.matchEntire(this)?.groups?.drop(1)?.mapNotNull { it?.value } ?: listOf()
+fun String.replacingRegex(rules: Map<Regex, String>): String {
     var ret = this
 
-    rules.forEach { (rule, with) -> ret = ret.replace(Regex(rule), with) }
+    rules.forEach { (rule, with) -> ret = ret.replace(rule, with) }
 
     return ret
 }
 
-fun List<String>.toInts(): List<Int> = map { it.toInt() }
+fun List<String>.toInts() = map { it.toInt() }
 
 operator fun CharSequence.set(index: Int, c: Char) = replaceRange(index..index, c.toString())
 operator fun String.set(index: Int, c: Char) = replaceRange(index..index, c.toString())
