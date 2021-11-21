@@ -6,7 +6,7 @@ fun String.rollingAt(i: Int) = this[i % length]
 
 fun String.occurrences(c: Char) = count { it == c }
 fun String.binary() = Integer.parseInt(this, 2)
-fun String.groups(regex: Regex) = regex.matchEntire(this)?.groups?.drop(1)?.mapNotNull { it?.value } ?: listOf()
+fun String.groups(regex: Regex) = regex.matchEntire(this)?.destructured!!
 fun String.replacingRegex(rules: Map<Regex, String>): String {
     var ret = this
 

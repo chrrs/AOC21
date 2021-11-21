@@ -8,20 +8,17 @@ fun main() {
     Solution(2020, 2)
         .part1 {
             lines.count {
-                val groups = it.groups(Regex("(\\d+)-(\\d+) ([a-z]): (.*)"))
+                val (a, b, c, pass) = it.groups(Regex("(\\d+)-(\\d+) ([a-z]): (.*)"))
 
-                val min = groups[0].toInt()
-                val max = groups[1].toInt()
-
-                (min..max).contains(groups[3].occurrences(groups[2][0]))
+                (a.toInt()..b.toInt()).contains(pass.occurrences(c[0]))
             }
         }
         .part2 {
             lines.count {
-                val groups = it.groups(Regex("(\\d+)-(\\d+) ([a-z]): (.*)"))
+                val (a, b, c, pass) = it.groups(Regex("(\\d+)-(\\d+) ([a-z]): (.*)"))
 
-                listOf(groups[0].toInt(), groups[1].toInt())
-                    .filter { i -> groups[3].getOrNull(i - 1) == groups[2][0] }
+                listOf(a.toInt(), b.toInt())
+                    .filter { i -> pass.getOrNull(i - 1) == c[0] }
                     .size == 1
             }
         }
