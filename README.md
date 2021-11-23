@@ -8,8 +8,9 @@ I think Kotlin is a really suitable language for Advent of Code, because it hand
 functions like `map` and `fold`. As most of the days in Advent of Code involve some kind of list manipulation /
 analysis, this is a really important thing to get right.
 
-Furthermore, Kotlin is very extendable. This allows me to extend normal Kotlin types like strings or lists with my own
-functions, which saves me a lot of time writing boilerplate code.
+Furthermore, Kotlin is very extendable. This allows me to write my own framework, which automates a lot of tasks and
+allows me to extend normal Kotlin types like strings or lists with my own functions, which saves me a lot of time
+writing boilerplate code.
 
 ## Framework? What framework?
 
