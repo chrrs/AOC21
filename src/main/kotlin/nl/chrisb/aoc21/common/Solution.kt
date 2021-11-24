@@ -10,7 +10,7 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
-class Solution(private val year: Int, private val day: Int, input: String? = null) {
+class Solution(private val year: Int, private val day: Int, initialInput: String? = null) {
     private val cookie = dotenv()["COOKIE"]
     private val httpClient = HttpClient.newHttpClient()
 
@@ -21,7 +21,8 @@ class Solution(private val year: Int, private val day: Int, input: String? = nul
         Cache(mutableMapOf())
     }
 
-    val lines: List<String> = input?.lines() ?: getDayCache().input.lines()
+    val input = initialInput ?: getDayCache().input
+    val lines: List<String> = input.lines()
 
     private fun fetchInput(): String =
         httpClient.send(
