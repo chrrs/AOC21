@@ -30,4 +30,6 @@ fun <T> Collection<T>.cartesian(other: Collection<T>, vararg others: Collection<
     listOf(this, other, *others)
         .fold(listOf(listOf<T>())) { acc, set -> acc.flatMap { list -> set.map { list + it } } }
 
+fun <T> Collection<Collection<T>>.overallIntersection() = drop(1).fold(this.first()) { acc, s -> acc.intersect(s) }
+
 fun <T> T.print() = also { println(it) }
