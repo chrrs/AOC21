@@ -51,4 +51,8 @@ fun <T> Collection<T>.frequency(): Map<T, Int> {
     return map
 }
 
+fun ByteArray.hex() = joinToString("") { "%02x".format(it) }
+
+fun indices(from: Int = 0) = generateSequence(from) { it + 1 }
+
 fun <T> T.print() = also { println(it) }
