@@ -16,6 +16,16 @@ fun String.replacingRegex(rules: Map<Regex, String>): String {
     return ret
 }
 
+fun String.frequency(): Map<Char, Int> {
+    val map = mutableMapOf<Char, Int>()
+
+    forEach {
+        map[it] = map.getOrDefault(it, 0) + 1
+    }
+
+    return map
+}
+
 fun List<String>.toInts() = map { it.toInt() }
 
 operator fun CharSequence.set(index: Int, c: Char) = replaceRange(index..index, c.toString())
@@ -31,5 +41,14 @@ fun <T> Collection<T>.cartesian(other: Collection<T>, vararg others: Collection<
         .fold(listOf(listOf<T>())) { acc, set -> acc.flatMap { list -> set.map { list + it } } }
 
 fun <T> Collection<Collection<T>>.overallIntersection() = drop(1).fold(this.first()) { acc, s -> acc.intersect(s) }
+fun <T> Collection<T>.frequency(): Map<T, Int> {
+    val map = mutableMapOf<T, Int>()
+
+    forEach {
+        map[it] = map.getOrDefault(it, 0) + 1
+    }
+
+    return map
+}
 
 fun <T> T.print() = also { println(it) }
