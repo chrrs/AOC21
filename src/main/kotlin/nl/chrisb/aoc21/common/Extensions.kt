@@ -1,5 +1,8 @@
 package nl.chrisb.aoc21.common
 
+import kotlin.math.max
+import kotlin.math.min
+
 fun List<*>.rollingAt(i: Int) = this[i % size]
 fun Array<*>.rollingAt(i: Int) = this[i % size]
 fun String.rollingAt(i: Int) = this[i % length]
@@ -54,5 +57,6 @@ fun <T> Collection<T>.frequency(): Map<T, Int> {
 fun ByteArray.hex() = joinToString("") { "%02x".format(it) }
 
 fun indices(from: Int = 0) = generateSequence(from) { it + 1 }
+infix fun Int.between(b: Int) = min(this, b)..max(this, b)
 
 fun <T> T.print() = also { println(it) }
