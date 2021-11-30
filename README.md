@@ -1,6 +1,6 @@
 # AOC21
 
-> My Advent of Code solutions written in Kotlin
+> My Advent of Code solutions written in Kotlin.
 
 ## Why Kotlin?
 
