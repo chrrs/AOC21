@@ -11,9 +11,9 @@ fun main() {
                 .count { it.first < it.second }
         }
         .part2 {
-            val ints = lines.toInts()
-            ints.dropLast(2)
-                .mapIndexed { i, c -> c + ints[i + 1] + ints[i + 2] }
+            lines.toInts()
+                .windowed(3)
+                .map { it.sum() }
                 .zipWithNext()
                 .count { it.first < it.second }
         }
