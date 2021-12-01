@@ -12,8 +12,7 @@ fun main() {
         }
         .part2 {
             lines.toInts()
-                .windowed(3)
-                .map { it.sum() }
+                .windowed(3) { it.sum() }
                 .zipWithNext()
                 .count { it.first < it.second }
         }
