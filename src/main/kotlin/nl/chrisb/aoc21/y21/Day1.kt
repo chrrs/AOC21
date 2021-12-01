@@ -1,4 +1,4 @@
-package nl.chrisb.aoc21
+package nl.chrisb.aoc21.y21
 
 import nl.chrisb.aoc21.common.Solution
 import nl.chrisb.aoc21.common.toInts
