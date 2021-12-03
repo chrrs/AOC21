@@ -31,19 +31,20 @@ fun main() {
             var generator = lines
             var scrubber = lines
             for (bit in 0 until lines[0].length) {
-                if (generator.size > 1) {
-                    val count = generator.count { it[bit] == '1' }
-                    val expected = if (count * 2 < generator.size) '0' else '1'
-                    generator = generator.filter { it[bit] == expected }
-                }
-
-                if (scrubber.size > 1) {
-                    val count = scrubber.count { it[bit] == '1' }
-                    val expected = if (count * 2 < scrubber.size) '1' else '0'
-                    scrubber = scrubber.filter { it[bit] == expected }
-                }
+                generator = generator.filterCommonBit(bit, false)
+                scrubber = scrubber.filterCommonBit(bit, true)
             }
 
             generator.first().binary() * scrubber.first().binary()
         }
+}
+
+fun List<String>.filterCommonBit(bit: Int, least: Boolean): List<String> {
+    return if (size > 1) {
+        val count = count { it[bit] == '1' }
+        val expected = if ((count * 2 < size) xor least) '0' else '1'
+        filter { it[bit] == expected }
+    } else {
+        this
+    }
 }
