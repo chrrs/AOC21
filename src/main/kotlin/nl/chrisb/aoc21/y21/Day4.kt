@@ -35,7 +35,7 @@ fun main() {
                     }
                 }
 
-            numbers.firstNotNullOf { n ->
+            numbers.firstNotNullOfOrNull { n ->
                 boards = boards.map { board -> board.map { line -> line.map { if (it == n) null else it } } }
 
                 if (boards.size > 1) {
