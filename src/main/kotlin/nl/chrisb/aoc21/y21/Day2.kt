@@ -1,12 +1,12 @@
 package nl.chrisb.aoc21.y21
 
 import nl.chrisb.aoc21.common.Solution
-import java.awt.Point
+import nl.chrisb.aoc21.common.Vec2
 
 fun main() {
     Solution(2021, 2)
         .part1 {
-            val location = Point(0, 0)
+            val location = Vec2(0, 0)
 
             lines.forEach {
                 val parts = it.split(" ")
@@ -14,16 +14,16 @@ fun main() {
                 val arg = parts[1].toInt()
 
                 when (command) {
-                    "forward" -> location.translate(arg, 0)
-                    "down" -> location.translate(0, arg)
-                    "up" -> location.translate(0, -arg)
+                    "forward" -> location.move(arg, 0)
+                    "down" -> location.move(0, arg)
+                    "up" -> location.move(0, -arg)
                 }
             }
 
             location.x * location.y
         }
         .part2 {
-            val location = Point(0, 0)
+            val location = Vec2(0, 0)
             var aim = 0
 
             lines.forEach {
@@ -32,7 +32,7 @@ fun main() {
                 val arg = parts[1].toInt()
 
                 when (command) {
-                    "forward" -> location.translate(arg, arg * aim)
+                    "forward" -> location.move(arg, arg * aim)
                     "down" -> aim += arg
                     "up" -> aim -= arg
                 }
