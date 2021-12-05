@@ -9,3 +9,7 @@ abstract class Solution(val year: Int, val day: Int, val title: String, val fini
     abstract fun part1(): Any?
     abstract fun part2(): Any?
 }
+
+val allSolutions = listOf(
+    nl.chrisb.aoc21.y21.Day1()
+)
