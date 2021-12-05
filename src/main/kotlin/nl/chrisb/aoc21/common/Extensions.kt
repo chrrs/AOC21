@@ -1,5 +1,6 @@
 package nl.chrisb.aoc21.common
 
+import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.math.min
 
@@ -58,5 +59,8 @@ fun ByteArray.hex() = joinToString("") { "%02x".format(it) }
 
 fun indices(from: Int = 0) = generateSequence(from) { it + 1 }
 infix fun Int.between(b: Int) = min(this, b)..max(this, b)
+
+val Int.normalized
+    get() = this / absoluteValue
 
 fun <T> T.print() = also { println(it) }
