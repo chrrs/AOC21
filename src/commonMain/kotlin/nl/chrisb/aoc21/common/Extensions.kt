@@ -9,7 +9,7 @@ fun Array<*>.rollingAt(i: Int) = this[i % size]
 fun String.rollingAt(i: Int) = this[i % length]
 
 fun String.occurrences(c: Char) = count { it == c }
-fun String.binary() = Integer.parseInt(this, 2)
+fun String.binary() = toInt(2)
 fun String.groups(regex: Regex) = regex.matchEntire(this)?.destructured!!
 fun String.splitAt(i: Int) = this.substring(0, i) to this.substring(i)
 fun String.replacingRegex(rules: Map<Regex, String>): String {
@@ -24,7 +24,7 @@ fun String.frequency(): Map<Char, Int> {
     val map = mutableMapOf<Char, Int>()
 
     forEach {
-        map[it] = map.getOrDefault(it, 0) + 1
+        map[it] = (map[it] ?: 0) + 1
     }
 
     return map
@@ -49,13 +49,13 @@ fun <T> Collection<T>.frequency(): Map<T, Int> {
     val map = mutableMapOf<T, Int>()
 
     forEach {
-        map[it] = map.getOrDefault(it, 0) + 1
+        map[it] = (map[it] ?: 0) + 1
     }
 
     return map
 }
 
-fun ByteArray.hex() = joinToString("") { "%02x".format(it) }
+fun ByteArray.hex() = joinToString("") { it.toString(16).padStart(2, '0') }
 
 fun indices(from: Int = 0) = generateSequence(from) { it + 1 }
 infix fun Int.between(b: Int) = min(this, b)..max(this, b)
