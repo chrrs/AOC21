@@ -3,7 +3,7 @@ package nl.chrisb.aoc21.y21
 import nl.chrisb.aoc21.common.Solution
 import nl.chrisb.aoc21.common.toInts
 
-class Day1 : Solution(2021, 1, "Sonar Sweep") {
+object Day1 : Solution(2021, 1, "Sonar Sweep") {
     override fun part1(): Int {
         return lines.toInts()
             .zipWithNext()
