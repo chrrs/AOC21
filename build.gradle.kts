@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform") version "1.5.31"
     kotlin("plugin.serialization") version "1.5.31"
+    id("application")
 }
 
 group = "nl.chrisb"
@@ -38,4 +39,8 @@ kotlin {
             }
         }
     }
+}
+
+application {
+    mainClass.set("nl.chrisb.aoc21.runner.RunnerKt")
 }
