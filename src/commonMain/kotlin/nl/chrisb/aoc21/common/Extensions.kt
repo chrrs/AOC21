@@ -64,3 +64,5 @@ val Int.normalized
     get() = this / absoluteValue
 
 fun <T> T.print() = also { println(it) }
+
+expect fun ByteArray.md5(): ByteArray
