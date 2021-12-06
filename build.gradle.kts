@@ -1,7 +1,8 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("multiplatform") version "1.5.31"
+    kotlin("jvm") version "1.5.10"
     kotlin("plugin.serialization") version "1.5.31"
-    id("application")
 }
 
 group = "nl.chrisb"
@@ -11,30 +12,12 @@ repositories {
     mavenCentral()
 }
 
-kotlin {
-    jvm {
-        withJava()
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
-        testRuns["test"].executionTask.configure {
-            useJUnit()
-        }
-    }
-
-    sourceSets {
-        val commonMain by getting
-        val jvmMain by getting {
-            dependencies {
-                implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
-                implementation("com.charleskorn.kaml:kaml:0.37.0")
-                implementation("com.github.ajalt.mordant:mordant:2.0.0-beta3")
-                implementation("com.xenomachina:kotlin-argparser:2.0.7")
-            }
-        }
-    }
+dependencies {
+    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
+    implementation("com.charleskorn.kaml:kaml:0.37.0")
+    implementation("com.github.ajalt.mordant:mordant:2.0.0-beta3")
 }
 
-application {
-    mainClass.set("nl.chrisb.aoc21.runner.RunnerKt")
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
 }
