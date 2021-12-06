@@ -20,15 +20,8 @@ fun main() {
                 .forEach { fish[it] += 1L }
 
             (0 until 256).forEach { _ ->
-                val zero = fish[0]
-
-                fish.indices.zipWithNext { a, b ->
-                    fish[a] = fish[b]
-                    fish[b] = 0L
-                }
-
-                fish[6] += zero
-                fish[8] += zero
+                fish.add(fish.removeAt(0))
+                fish[6] += fish[8]
             }
 
             fish.sum()
