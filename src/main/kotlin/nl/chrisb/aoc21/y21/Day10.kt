@@ -14,10 +14,10 @@ fun main() {
                             stack.add(c)
                             null
                         }
-                        ')' -> if (stack.last() == '(') stack.removeLast().let { null } else 3L
-                        ']' -> if (stack.last() == '[') stack.removeLast().let { null } else 57L
-                        '}' -> if (stack.last() == '{') stack.removeLast().let { null } else 1197L
-                        '>' -> if (stack.last() == '<') stack.removeLast().let { null } else 25137L
+                        ')' -> if (stack.removeLast() == '(') null else 3L
+                        ']' -> if (stack.removeLast() == '[') null else 57L
+                        '}' -> if (stack.removeLast() == '{') null else 1197L
+                        '>' -> if (stack.removeLast() == '<') null else 25137L
                         else -> null
                     }
                 } ?: 0L
@@ -27,29 +27,23 @@ fun main() {
             val scores = lines.mapNotNull { line ->
                 val stack = mutableListOf<Char>()
 
-                if (line.any { c ->
-                        when (c) {
-                            '(', '[', '{', '<' -> {
-                                stack.add(c)
-                                false
-                            }
-                            ')' -> if (stack.last() == '(') stack.removeLast().let { false } else true
-                            ']' -> if (stack.last() == '[') stack.removeLast().let { false } else true
-                            '}' -> if (stack.last() == '{') stack.removeLast().let { false } else true
-                            '>' -> if (stack.last() == '<') stack.removeLast().let { false } else true
-                            else -> false
-                        }
-                    }) {
-                    null
-                } else {
-                    stack.reversed().fold(0L) { acc, c ->
-                        acc * 5 + when (c) {
-                            '(' -> 1
-                            '[' -> 2
-                            '{' -> 3
-                            '<' -> 4
-                            else -> 0
-                        }
+                line.forEach { c ->
+                    when (c) {
+                        '(', '[', '{', '<' -> stack.add(c)
+                        ')' -> if (stack.removeLast() != '(') return@mapNotNull null
+                        ']' -> if (stack.removeLast() != '[') return@mapNotNull null
+                        '}' -> if (stack.removeLast() != '{') return@mapNotNull null
+                        '>' -> if (stack.removeLast() != '<') return@mapNotNull null
+                    }
+                }
+
+                stack.reversed().fold(0L) { acc, c ->
+                    acc * 5 + when (c) {
+                        '(' -> 1
+                        '[' -> 2
+                        '{' -> 3
+                        '<' -> 4
+                        else -> 0
                     }
                 }
             }.sorted()
